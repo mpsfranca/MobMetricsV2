@@ -50,9 +50,10 @@ else
     exit 1
 fi
 
+echo "BonnMotion ready."
+
 echo "Running makemigrations and migrate..."
 python MobMetrics/manage.py makemigrations metrics
 python MobMetrics/manage.py migrate
 
 echo "Installation complete! Activate the environment with: conda activate MobMetrics."
-echo "BonnMotion ready at ./bonnmotion-3.0.1/bin/bm."
