@@ -16,27 +16,31 @@ The tool was presented at SBRC 2025 as "MobMetrics: A Modular Architecture for C
 
 ## Installation
 
-1. Clone the repository:
+1. Install [Python](https://www.python.org/downloads/).
+
+2. Install [Git](https://git-scm.com/install/)
+
+3. Clone the repository:
 ```
 git clone https://github.com/mpsfranca/MobMetrics-SBRC-2026.git
 ```
-2. Navigate to the project folder:
+4. Navigate to the project folder:
 ```
 cd MobMetrics-SBRC-2026
 ```
-3. Run the install script:
+5. Run the install script:
 ```
 chmod +x install.sh && ./install.sh
 ```
-4. Activate the virtual environment:
+6. Activate the virtual environment:
 ```
 conda activate MobMetrics
 ```
-5. Start the server:
+7. Start the server:
 ```
 python MobMetrics/manage.py runserver
 ```
-6. Access at `http://localhost:8000`
+8. Access at `http://localhost:8000`
 
 
 **Note**: What the `install.sh` does automatically:
