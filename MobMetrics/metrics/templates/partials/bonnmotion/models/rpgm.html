@@ -1,0 +1,158 @@
+<!-- RPGM Specific Parameters -->
+<fieldset class="model card-body p-3 p-md-4 d-none" id="RPGM">
+    <div class="row g-3">
+        <div class="col-md-12">
+            <label class="form-label fw-semibold" for="{{ rpgm_form.parameters.id_for_label }}">
+                Parameters
+            </label>
+            {{ rpgm_form.parameters }}
+        </div>
+    </div>
+</fieldset>
+
+
+<div class="modal fade" id="helpModal-RPGM" tabindex="-1" aria-labelledby="rpgmHelpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="rpgmHelpModalLabel">How to use RPGM</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="card border-0">
+                    <div class="card-body p-0">
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Average no. of nodes per group (-a)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Average number of mobile nodes assigned to each group.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">nodes</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">Positive number</span>
+                                    </div>
+                                    <div class="small mt-1 text-body-secondary">
+                                        Default: <code>3.0</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Group change probability (-c)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Probability that a node changes to another group when it moves into that group's range.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">Number between 0 and 1</span>
+                                    </div>
+                                    <div class="small mt-1 text-body-secondary">
+                                        Default: <code>0.01</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Max. distance to group center (-r)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Maximum deviation allowed between a node and its group reference point.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">meters (m) / distance units</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">Positive number</span>
+                                    </div>
+                                    <div class="small mt-1 text-body-secondary">
+                                        Default: <code>2.5</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mb-0 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Group size standard deviation (-s)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Controls how much actual group sizes vary around the average.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">nodes</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">Non-negative number</span>
+                                    </div>
+                                    <div class="small mt-1 text-body-secondary">
+                                        Default: <code>2.0</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mt-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">Example:</h6>
+                                <pre class="mb-0 mt-1"><code>-a 3.0 -c 0.01 -r 2.5 -s 2.0</code></pre>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>

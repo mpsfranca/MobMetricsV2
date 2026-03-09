@@ -1,0 +1,313 @@
+<!-- TODO: THIS MODEL CANNOT BE IMPLEMENTED WITHOUT FILE INPUT -->
+
+<!-- TIMM Specific Parameters -->
+<fieldset class="model card-body p-3 p-md-4 d-none" id="TIMM">
+    <div class="row g-3">
+        <div class="col-md-12">
+            <label class="form-label fw-semibold" for="{{ timm_form.parameters.id_for_label }}">
+                Parameters
+            </label>
+            {{ timm_form.parameters }}
+        </div>
+    </div>
+</fieldset>
+
+<div class="modal fade" id="helpModal-TIMM" tabindex="-1" aria-labelledby="timmHelpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="timmHelpModalLabel">How to use TIMM</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="card border-0">
+                    <div class="card-body p-0">
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Path to graph file (-b)
+                                    <span class="badge text-bg-danger ms-2">Required</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Path to the indoor building graph used by the model.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">Filename or path</span>
+                                    </div>
+                                    <div class="small mt-1">
+                                        Example: <code>-b building.graph</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Max distance per group (-D)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Maximum walking distance for each group. Values are comma-separated, one per group.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">distance units / meters</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">Comma-separated numbers</span>
+                                    </div>
+                                    <div class="small mt-1">
+                                        Example: <code>-D 10,20,30,40</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Group endtime (-E)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    End time for each group, given as comma-separated values.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">time units / seconds</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">Comma-separated numbers</span>
+                                    </div>
+                                    <div class="small mt-1">
+                                        Example: <code>-E 100,200,300,400</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Fast speed and variance (-F)
+                                    <span class="badge text-bg-danger ms-2">Required</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Fast movement speed together with its variance, given as two comma-separated values.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">m/s</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">speed,variance</span>
+                                    </div>
+                                    <div class="small mt-1">
+                                        Example: <code>-F 1.5,0.2</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Group sizes (-g)
+                                    <span class="badge text-bg-danger ms-2">Required</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Sizes of all groups, given as comma-separated integers. The sum of these sizes must exactly match the total number of nodes in the scenario.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">Comma-separated integers</span>
+                                    </div>
+                                    <div class="small mt-1">
+                                        Example: <code>-g 1,2,3,4</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Enable group-one rules (-G)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Enables a special rule set for group one. This is a boolean flag and is disabled by default.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Max graph vertex distance (-m)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Maximum distance allowed between vertices in the building graph.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">distance units / meters</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="small">
+                                        Example: <code>-m 5</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Minimal group size (-M)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Minimum allowed group size.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="small">
+                                        Example: <code>-M 1</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Door opening time and variance (-o)
+                                    <span class="badge text-bg-danger ms-2">Required</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Time needed for door opening and securing, together with variance, given as two comma-separated values.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">time units / seconds</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="small">
+                                        Example: <code>-o 3,0.5</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Slow speed and variance (-s)
+                                    <span class="badge text-bg-danger ms-2">Required</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Slow movement speed together with variance, given as two comma-separated values.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">m/s</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="small">
+                                        Example: <code>-s 1.0,0.1</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mb-0 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Group starttime (-S)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Start times for groups, given as comma-separated values.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">time units / seconds</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="small">
+                                        Example: <code>-S 0,10,20,30</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mt-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">Example:</h6>
+                                <pre
+                                    class="mb-0 mt-1"><code>-b building.graph -F 1.5,0.2 -g 2,3,4 -o 3,0.5 -s 1.0,0.1 -S 0,10,20</code></pre>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,231 @@
+<!-- GaussMarkov Specific Parameters -->
+<fieldset class="model card-body p-3 p-md-4 d-none" id="GaussMarkov">
+    <div class="row g-3">
+        <div class="col-md-12">
+            <label class="form-label fw-semibold" for="{{ gaussmarkov_form.parameters.id_for_label }}">
+                Parameters
+            </label>
+            {{ gaussmarkov_form.parameters }}
+        </div>
+    </div>
+</fieldset>
+
+<div class="modal fade" id="helpModal-GaussMarkov" tabindex="-1" aria-labelledby="gaussMarkovHelpModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="gaussMarkovHelpModalLabel">How to use GaussMarkov</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="card border-0">
+                    <div class="card-body p-0">
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Angle standard deviation (-a)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Controls how much the direction changes from one update to the next.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">radians</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">Non-negative number</span>
+                                    </div>
+                                    <div class="small mt-1 text-body-secondary">
+                                        Default: <code>0.125&pi;</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Max. speed (-h)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Upper bound for node speed.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">m/s</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">Positive number</span>
+                                    </div>
+                                    <div class="small mt-1 text-body-secondary">
+                                        Default: <code>1.5</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Update frequency (-q)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Time interval for updating speed and direction.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">seconds (s)</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">Positive number</span>
+                                    </div>
+                                    <div class="small mt-1 text-body-secondary">
+                                        Default: <code>2.5</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Speed standard deviation (-s)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Controls how much the speed changes between updates.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">m/s</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">Non-negative number</span>
+                                    </div>
+                                    <div class="small mt-1 text-body-secondary">
+                                        Default: <code>0.5</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Bounce at boundaries (-b)
+                                    <span class="badge text-bg-secondary ms-2">Optional switch</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Keeps nodes inside the simulation area by making them bounce at the boundaries
+                                    instead of allowing the area to expand.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Min. speed (-m)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Lower bound for node speed.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">m/s</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">Non-negative number</span>
+                                    </div>
+                                    <div class="small mt-1 text-body-secondary">
+                                        Default: <code>0</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Gaussian initial speeds (-g)
+                                    <span class="badge text-bg-secondary ms-2">Optional switch</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Initializes node speeds with a Gaussian distribution centered around
+                                    <code>(minspeed + maxspeed)/2</code>
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="card mb-0 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Force uniform speed distribution (-u)
+                                    <span class="badge text-bg-secondary ms-2">Optional switch</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Forces speed values to stay within the valid interval using the model's
+                                    uniform-speed handling.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="card mt-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">Example:</h6>
+                                <pre
+                                    class="mb-0 mt-1"><code>-a 0.4 -h 1.5 -q 2.5 -s 0.5 -m 0.0 -b -g -u</code></pre>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

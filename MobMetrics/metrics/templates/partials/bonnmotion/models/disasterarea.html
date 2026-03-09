@@ -1,0 +1,318 @@
+<!-- DisasterArea Specific Parameters -->
+<fieldset class="model card-body p-3 p-md-4 d-none" id="DisasterArea">
+    <div class="col-md-12">
+        <label class="form-label fw-semibold" for="{{ disasterarea_form.parameters.id_for_label }}">
+            Parameters
+        </label>
+        {{ disasterarea_form.parameters }}
+    </div>
+</fieldset>
+<!-- DisasterArea Specific Parameters -->
+<fieldset class="model card-body p-3 p-md-4 d-none" id="DisasterArea">
+    <div class="col-md-12">
+        <label class="form-label fw-semibold" for="{{ disasterarea_form.parameters.id_for_label }}">
+            Parameters
+        </label>
+        {{ disasterarea_form.parameters }}
+    </div>
+</fieldset>
+
+
+<div class="modal fade" id="helpModal-DisasterArea" tabindex="-1" aria-labelledby="disasterAreaHelpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+
+
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="disasterAreaHelpModalLabel">How to use DisasterArea</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+
+
+            <div class="modal-body">
+                <div class="card border-0">
+                    <div class="card-body p-0">
+
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Average no. of nodes per group (-a)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Average number of nodes per group. In this model, this parameter is kept for compatibility, but group sizes actually depend on the catastrophe areas.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">number of nodes</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">Positive number</span>
+                                    </div>
+                                    <div class="small mt-1 text-body-secondary">
+                                        Default: <code>3.0</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Catastrophe area (-b)
+                                    <span class="badge text-bg-danger ms-2">Required</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Defines one catastrophe area. This parameter can be used multiple times to create several catastrophe areas, and the model depends on these areas to build the scenario.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">Area definition</span>
+                                    </div>
+                                    <div class="small mt-1 text-body-secondary">
+                                        Repeat this parameter for multiple catastrophe areas.
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Group change probability (-c)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Probability of changing groups. In this model, this parameter is not effectively considered, because groups belong to areas.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">probability</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">Number from 0 to 1</span>
+                                    </div>
+                                    <div class="small mt-1 text-body-secondary">
+                                        Default: <code>0.0</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Max catastrophe areas (-e)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Maximum number of catastrophe areas allowed in the scenario.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">integer</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">Integer ≥ 1</span>
+                                    </div>
+                                    <div class="small mt-1 text-body-secondary">
+                                        Default: <code>4</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Max. distance to group center (-r)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Maximum distance a node may move away from its group reference point.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">meters (m)</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">Positive number</span>
+                                    </div>
+                                    <div class="small mt-1 text-body-secondary">
+                                        Default: <code>2.5</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Group size standard deviation (-s)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Variation around the average group size. In this model, this parameter is kept for compatibility, but group sizes actually depend on the catastrophe areas.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">number of nodes</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">Non-negative number</span>
+                                    </div>
+                                    <div class="small mt-1 text-body-secondary">
+                                        Default: <code>0</code>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Obstacle for only one group (-O)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Defines an obstacle that applies only to one specific group, identified by the last value in the parameter list.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">Obstacle definition + group id</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Write vis. info to file & show movements (-w)
+                                    <span class="badge text-bg-secondary ms-2">Optional flag</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Writes movement visualization information to file and enables movement output.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="small text-body-secondary">
+                                        This is a flag and does not require a numeric value.
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Write vis. info to file & show vis.graph (-v)
+                                    <span class="badge text-bg-secondary ms-2">Optional flag</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Writes visibility-graph information to file and enables visibility-graph output.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="small text-body-secondary">
+                                        This is a flag and does not require a numeric value.
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+
+                        <div class="card mb-0 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Do not knock over pedestrians (-K)
+                                    <span class="badge text-bg-secondary ms-2">Optional flag</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Prevents the model from treating pedestrians as knock-over candidates; in the code, this activates the no-knock-over behavior for areas beside APP.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="small text-body-secondary">
+                                        This is a flag and does not require a numeric value.
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+
+                        <div class="card mt-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">Example:</h6>
+                                <pre class="mb-0 mt-1"><code>-b 10,10,40,10,40,40,10,40,100,100,120,120,0,2,1 -e 4 -r 2.5 -O 25,150,100,150,100,200,25,200,3 -w -v -K</code></pre>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

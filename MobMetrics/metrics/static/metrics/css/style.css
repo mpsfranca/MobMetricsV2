@@ -1,0 +1,16 @@
+html {
+    /* To make sure the header is not on top of content */
+    scroll-padding-top: 88px;
+}
+
+@media (max-width: 991.98px) {
+    #mobmetricsNavbar .nav-link {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.input-border {
+    border-color: #6C757D;
+}
