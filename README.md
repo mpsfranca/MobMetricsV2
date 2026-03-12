@@ -1,4 +1,4 @@
-# MobMetrics
+# MobMetricsV2
 
 MobMetrics is a web-based tool for computing, storing, and visualizing a comprehensive set of mobility metrics from spatiotemporal traces. It supports uploading real-world trajectory data (CSV/GeoJSON) or generating synthetic traces using BonnMotion mobility models, making it ideal for researchers in mobile computing and networking.
 
