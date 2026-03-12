@@ -321,7 +321,7 @@ class BonnmotionScenarioForm(forms.Form):
         required=False,
         widget=forms.NumberInput(attrs={
             "class": "form-control input-border",
-            "placeholder": "(Optional)"
+            "value": '29052026'
         })
     )
 
