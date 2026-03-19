@@ -1,0 +1,21 @@
+<div class="content d-none" id="results">
+    <div class="container py-4">
+        {% include 'partials/results/results_header.html' %}
+        <hr class="my-5">
+        {% if last_file_name %}
+
+        {% include 'partials/results/results_trace_overview.html' %}
+        <hr class="my-5">
+
+        {% include 'partials/results/results_entities_analysis.html' %}
+        <hr class="my-5">
+
+        {% include 'partials/results/results_staypoints_analysis.html' %}
+        <hr class="my-5">
+
+        {% include 'partials/results/results_comparative_analysis.html' %}
+        
+        {% endif %}
+    </div>
+
+</div>

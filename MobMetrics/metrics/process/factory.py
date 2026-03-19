@@ -18,11 +18,11 @@ from ..metrics.spatial.angle_variation_coefficient import AngleVariationCoeffici
 from ..metrics.spatial.travel_avg_direction_angle import TravelAvgDirectionAngle
 from ..metrics.spatial.travel_distance import TravelDistance
 from ..metrics.utils.center_of_mass import CenterOfMass
-from ..metrics.spatial.radios_of_gyration import RadiusOfGyration
+from ..metrics.spatial.radius_of_gyration import RadiusOfGyration
 from ..metrics.spatial.trajectory_correlation import TrajectoryCorrelationDegree
 from ..metrics.spatial.staypoint_importance_degree import StaypointImportanceDegree
 ## from kinematic
-from ..metrics.kinematic.travel_avarage_speed import TravelAverageSpeed
+from ..metrics.kinematic.travel_average_speed import TravelAverageSpeed
 from ..metrics.kinematic.speed_variation_coefficient import SpeedVariationCoefficient
 
 class Factory:

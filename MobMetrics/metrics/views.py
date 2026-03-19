@@ -1,7 +1,10 @@
 # Standard library imports.
 from io import BytesIO
+import os
+import shutil
 import zipfile
 import json
+import subprocess
 
 # Related third party imports.
 import pandas as pd
@@ -9,9 +12,12 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.http import HttpResponse
 from django.db import transaction
+from django.conf import settings
 
 # Local application/library specific imports.
-from .forms import UploadForm, FileNameForm, DataAnalytcsParamsForm
+from .forms import UploadForm, FileNameForm, DataAnalytcsParamsForm,ModelSelectForm,BonnmotionMobmetricsForm,BonnmotionScenarioForm,BonnmotionRandomSpeedBase,ModelSpecificParametersForm
+from .utils.csv_converter import convert
+from .utils.model_params import functions
 from .process.factory import Factory
 from .process.format import Format
 from .process.DataAnalytcs.pca import PCA
@@ -81,6 +87,13 @@ def dashboard_view(request):
     # Get forms.
     upload_form = UploadForm()
     file_form = FileNameForm()
+    select_form = ModelSelectForm()
+    bm_mobmetrics_form = BonnmotionMobmetricsForm()
+    bm_scenario_form = BonnmotionScenarioForm()
+    bm_randomspeedbase_form = BonnmotionRandomSpeedBase()
+    model_specific_parameters_form = ModelSpecificParametersForm()
+
+
     analytcs_form = DataAnalytcsParamsForm()
 
     # Identify wich POST method was requested
@@ -94,7 +107,9 @@ def dashboard_view(request):
         elif 'generate_graphs' in request.POST:
             (pca_metrics_plot_html, pca_explained_plot_html, pca_dbscan_metrics_plot_html,
              tsne_metrics_plot_html, tsne_dbscan_metrics_plot_html,
-             pca_global_plot_html, tsne_global_plot_html) = _handle_generate_graphs(request)      
+             pca_global_plot_html, tsne_global_plot_html) = _handle_generate_graphs(request)
+        elif 'create' in request.POST:
+            _handle_bonnmotion(request)
 
     last_config = ConfigModel.objects.last()
 
@@ -146,9 +161,15 @@ def dashboard_view(request):
         metric_boxplot_html = None
         stay_points_html = None
 
-    return render(request, 'dashboard.html', {
+    return render(request, 'base.html', {
         'upload_form': upload_form,
         'file_form': file_form,
+        'select_form': select_form,
+        'bm_mobmetrics_form': bm_mobmetrics_form,
+        'bm_scenario_form': bm_scenario_form,
+        'bm_randomspeedbase_form': bm_randomspeedbase_form,
+        'model_specific_parameters_form': model_specific_parameters_form,
+
         'analytcs_form': analytcs_form,
         'file_names': file_names,
 
@@ -382,7 +403,6 @@ def _handle_generate_graphs(request):
             tsne_metrics_plot_html, tsne_dbscan_metrics_plot_html,
             pca_global_plot_html, tsne_global_plot_html)
 
-
 def _columns_analytics(metrics_df, global_metrics_df):
     """
     Function to define wich metrics will be analysed
@@ -466,3 +486,84 @@ def _create_trace_model(parameters, df):
 
     with transaction.atomic():
         TraceModel.objects.bulk_create(trace_objects, batch_size=1000)
+
+def _handle_bonnmotion(request):
+    data = request.POST
+    scenario_name = data.get('scenario_name')
+    model = data.get('model')
+    random_seed = data.get('random_seed')
+    area_depth = data.get('area_depth')
+    use_circular_shape = data.get('use_circular_shape') #TODO Check why it isn't being sent
+    attraction_points = data.get('attraction_points')
+    dimension_select = data.get('dimension_select')
+    max_speed = data.get('max_speed')
+    min_speed = data.get('min_speed')
+    max_pause_time = data.get('max_pause_time')
+
+    # Scenario Params
+    args = [
+    "-f", scenario_name,
+    model,
+    "-n", data.get('nodes'),
+    "-d", data.get('scenario_duration'),
+    "-x", data.get('area_width'),
+    "-y", data.get('area_height'),
+    "-i", data.get('skip_time')
+]
+    if attraction_points:
+        args += ["-a", attraction_points]
+    if use_circular_shape:
+        args += ["-c"]
+    if random_seed:
+        args += ["-R", random_seed]
+    if area_depth:
+        args += ["-z", area_depth]
+    if dimension_select:
+        args += ["-J", dimension_select]
+    if max_speed:
+        args += ["-h",max_speed]
+    if min_speed:
+        args += ["-l",min_speed]
+    if max_pause_time:
+        args += ["-p",max_pause_time]
+
+    args += functions[model](data)
+
+    subprocess.run([settings.BONNMOTION_DIR,*args])
+
+    subprocess.run([settings.BONNMOTION_DIR,"CSVFile",'-f',scenario_name])
+    
+    convert(scenario_name)
+
+    csvFile = open(f"{scenario_name}.csv",'r')
+
+    data_frame = pd.read_csv(csvFile)
+    data_frame = Format(data_frame).extract()
+
+    output_path = f"{settings.AUX_PATH}/generated_scenarios/{model}/{scenario_name}"
+    os.makedirs(output_path, exist_ok=True)
+    [shutil.move(f, f"{output_path}/{f}") for f in [f"{scenario_name}.params", f"{scenario_name}.movements.gz", f"{scenario_name}.csv"]]
+
+    distance_threshold = data.get('distance_threshold')
+    time_threshold = data.get('time_threshold')
+    radius_threshold = data.get('radius_threshold')
+    quadrant_divisions = data.get('quadrant_divisions')
+    contact_time_threshold = data.get('contact_time_threshold')
+
+    parameters = [
+        float(distance_threshold) if distance_threshold else "",
+        float(time_threshold) if time_threshold else "",
+        float(radius_threshold) if radius_threshold else "",
+        float(quadrant_divisions) if quadrant_divisions else "",
+        scenario_name,
+        f"{scenario_name}-{model}",
+        True if data.get('geo_coord') else False,
+        float(contact_time_threshold) if contact_time_threshold else "",
+        True if data.get('skip_contact_detection') else False
+    ]
+
+    _create_config_model(parameters)
+    _create_trace_model(parameters, data_frame)
+    
+    Factory(data_frame, parameters).extract()
+

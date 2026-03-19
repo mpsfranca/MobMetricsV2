@@ -1,0 +1,116 @@
+<!-- ChainScenario Specific Parameters -->
+<fieldset class="model card-body p-3 p-md-4 d-none" id="ChainScenario">
+    <div class="col-md-12">
+        <label class="form-label fw-semibold" for="{{ model_specific_parameters_form.parameters.id_for_label }}">
+            Parameters
+        </label>
+        {{ model_specific_parameters_form.parameters }}
+    </div>
+</fieldset>
+
+<div class="modal fade" id="helpModal-ChainScenario" tabindex="-1" aria-labelledby="chainScenarioHelpModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+
+
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="chainScenarioHelpModalLabel">How to use ChainScenario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+
+
+            <div class="modal-body">
+                <div class="card border-0">
+                    <div class="card-body p-0">
+
+
+
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Transition mode (-m)
+                                    <span class="badge text-bg-secondary ms-2">Optional</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    Selects how nodes transition from one linked scenario to the next.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="text-body-secondary">Units</span>
+                                    <span class="fw-semibold">integer</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">0 or 1</span>
+                                    </div>
+                                    <div class="small mt-1 text-body-secondary">
+                                        Default: <code>0</code>
+                                    </div>
+                                    <div class="small mt-1 text-body-secondary">
+                                        <code>0</code>: Fast mode; <code>1</code>: Move mode, where nodes get 2 seconds
+                                        to reach the new position.
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mb-0 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">
+                                    Models to chain
+                                    <span class="badge text-bg-danger ms-2">Required</span>
+                                </h6>
+                                <p class="text-body-secondary small mb-0">
+                                    One or more scenario model commands to be linked in sequence. ChainScenario
+                                    instantiates each model, keeps them in order, and then merges all node waypoints
+                                    into one combined scenario.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-body-secondary">Enter</span>
+                                        <span class="fw-semibold">At least one model command</span>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="small text-body-secondary">
+                                        Example model names: <code>RandomWaypoint</code>, <code>GaussMarkov</code>,
+                                        <code>ManhattanGrid</code>.
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="card mt-3 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">Example:</h6>
+                                <pre
+                                    class="mb-0 mt-1"><code>-m 0 "RandomWaypoint -n 50 -x 500 -y 500 -d 300 -h 1.0 -l 0.5 -p 10" "GaussMarkov -n 50 -x 500 -y 500 -d 300 -a 0.75 -h 1.0 -q 0.2"</code></pre>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
